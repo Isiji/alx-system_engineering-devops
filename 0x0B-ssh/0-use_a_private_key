@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#coonects to the school server using the private key
+ssh -i ~/.ssh/school
