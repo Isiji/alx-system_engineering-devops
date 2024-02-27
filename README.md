@@ -1,1 +1,1 @@
- no empty readme
+start of web stack debugging concepts
