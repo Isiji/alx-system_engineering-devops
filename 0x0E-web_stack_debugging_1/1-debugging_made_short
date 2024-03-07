@@ -2,5 +2,4 @@
 # configures a server to listening on port 80 of all servers active IPv4 IP
 ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 sudo service nginx restart
-#finds and termnates the process id making nginx to stop
 kill "$(pgrep 'nginx' | head -1)"
