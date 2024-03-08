@@ -33,19 +33,19 @@ defaults
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
 
-frontend https-in
+frontend https
         bind *:80
         mode http
         http-request redirect scheme https code 301 unless { ssl_fc }
-        http-request set-header X_Forwarded-Proto http
+        http-request set-header X_Forwarded-Proto https
         default_backend servers
 
-frontend https-in
-        bind *:443 ssl crt /etc/haproxy/certs/clickviral.tech.pem
-        http-request set-header X-Forwarded-Proto https
+frontend http
+        bind *:443 ssl crt /etc/haproxy/certs/www.onetouchsolutions.tech.pem
+        http-request set-header X-Forwarded-Proto http
         default_backend servers
 
 backend servers
         balance roundrobin
-        server 151666-web-01 54.173.86.102:80 check
-        server 151666-web-02 54.157.166.185:80 check
+        server 462819-web-01 54.173.86.102:80 check
+        server 462819-web-02 54.157.166.185:80 check
