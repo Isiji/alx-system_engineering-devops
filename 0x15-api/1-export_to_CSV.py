@@ -22,7 +22,7 @@ if __name__ == "__main__":
     todos_response = requests.get(url + "todos", params=params)
     todos = todos_response.json()
     #open a csv file
-    with open("[].csv".format(user_id), "w", newline="") as csvfile:
+    with open("{}.csv".format(user_id), "w", newline="") as csvfile:
         writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
         for todo in todos:
             writer.writerow([user_id, username,todo.get("completed"),

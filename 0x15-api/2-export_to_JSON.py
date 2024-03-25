@@ -5,7 +5,7 @@
 
 import requests
 import sys
-
+import json
 
 if __name__ == "__main__":
     #we start by inputing the url of the API
@@ -18,7 +18,7 @@ if __name__ == "__main__":
     username = user.get("username")
     params = {"userId": user_id}
 
-   todos = requests.get(url + "todos", params=params).json() 
+    todos = requests.get(url + "todos", params=params).json() 
     data_to_export = {user_id: []}
     for todo in todos:
         task_info = [
