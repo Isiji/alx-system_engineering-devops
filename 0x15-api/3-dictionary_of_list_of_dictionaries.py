@@ -1,10 +1,5 @@
 #!/usr/bin/python3
-import json
-import requests
-from sys import argv
-
-def export_to_json():
-    """
+"""
     Fetches tasks for all users from an external API and exports the data to
     a JSON file.
 
@@ -20,6 +15,12 @@ def export_to_json():
         None
     """
 
+import json
+import requests
+import sys
+
+# Entry point of the script
+if __name__ == '__main__':
     # API endpoint to fetch user data
     url = 'https://jsonplaceholder.typicode.com/users'
     # Fetch user data from the API
@@ -40,7 +41,7 @@ def export_to_json():
         # Extract task data from the response
         tasks = response.json()
         task_list = []
-        
+
         # Iterate over each task of the current user
         for task in tasks:
             # Create a dictionary representing a task
@@ -56,7 +57,3 @@ def export_to_json():
     with open('todo_all_employees.json', 'w') as json_file:
         json.dump(all_tasks, json_file, indent=4)
 
-# Entry point of the script
-if __name__ == '__main__':
-    # Call the function to export tasks to JSON
-    export_to_json()
