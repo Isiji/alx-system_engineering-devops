@@ -10,8 +10,7 @@ Arguments:
     employee_id: The ID of the employee whose data needs to be fetched.
 
 Output Format:
-    First line: Employee EMPLOYEE_NAME is done with tasks
-    (NUMBER_OF_DONE_TASKS/TOTAL_NUMBER_OF_TASKS):
+    First line: Employee EMPLOYEE_NAME is done with tasks (NUMBER_OF_DONE_TASKS/TOTAL_NUMBER_OF_TASKS):
         - EMPLOYEE_NAME: name of the employee
         - NUMBER_OF_DONE_TASKS: number of completed tasks
         - TOTAL_NUMBER_OF_TASKS: total number of tasks,
@@ -52,17 +51,16 @@ if __name__ == "__main__":
     todos_response = requests.get(The_API + "todos", params=params)
     todos = todos_response.json()
 
-    # Create a list of completed tasks
-    completed = []
+    # Count the number of completed tasks
+    num_completed_tasks = sum(1 for todo in todos if todo.get("completed"))
 
-    for todo in todos:
-        if todo.get("completed") is True:
-            completed.append(todo.get("title"))
+    # Total number of tasks
+    total_tasks = len(todos)
 
     # Output progress
-    print("Employee {} is done with tasks ({}/{})".format(username,
-        len(completed), len(todos)))
+    print("Employee {} is done with tasks ({}/{})".format(username, num_completed_tasks, total_tasks))
 
     # Output completed tasks
-    for complete in completed:
-        print("\t{}".format(complete))
+    for todo in todos:
+        if todo.get("completed"):
+            print("\t{}".format(todo.get("title")))
