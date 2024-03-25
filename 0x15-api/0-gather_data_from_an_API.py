@@ -19,19 +19,24 @@ if __name__ == "__main__":
     #we start by inputing the url of the API
     The_API = "https://jsonplaceholder.typicode.com/"
 
+    #we extract the employee id from the command line
     employee_id = sys.argv[1]
+    #retrive user data
     user_response = requests.get(The_API + "user/{}".format(employee_id))
     user = user_response.json()
+    #retrieve todo list for a specific employee
     params = {"userId": employee_id}
     todos_response = requests.get(The_API + "todos", params=params)
     todos = todos_response.json()
+    #create a list of completed work
     completed = []
 
     for todo in todos:
         if todo.get("completed") is True:
             completed.append(todo.get("title"))
-    print("Employee {} is done with tasks{}/{}".format(user.get("username"),
+    #output progress
+    print("Employee {} is done with tasks{}/{}".format(user.get("name"),
         len(completed),len(todos)))
-
+    #output completed tasks
     for complete in completed:
         print(f"\t {complete}")
