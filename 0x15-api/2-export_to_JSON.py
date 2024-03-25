@@ -73,7 +73,3 @@ if __name__ == "__main__":
     with open(filename, "w") as jsonfile:
         json.dump(data_to_export, jsonfile, indent=4)
 
-    print("Correct USER_ID: OK")
-    print("USER_ID's value type is a list of dicts: OK")
-    print("All tasks found: OK")
-
