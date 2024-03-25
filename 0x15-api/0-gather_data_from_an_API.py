@@ -1,4 +1,3 @@
-#!/bin/usr/python3
 
 import requests
 import sys
@@ -18,7 +17,7 @@ if __name__ == "__main__":
     for todo in todos:
         if todo.get("completed") is True:
             completed.append(todo.get("title"))
-    print(f"Employee {user.get("name")} is done with tasks{len(completed)}/{len(todos)}")
+    print("Employee {} is done with tasks{}/{}".format(user.get("name"),len(completed),len(todos)))
 
     for complete in completed:
         print(f"\t {complete}")
