@@ -24,9 +24,9 @@ Example:
     a CSV file named "2.csv".
 """
 
+import csv
 import requests
 import sys
-import csv
 
 if __name__ == "__main__":
     # The base URL of the API
@@ -50,7 +50,7 @@ if __name__ == "__main__":
     # Open a CSV file to write the tasks
     with open("{}.csv".format(user_id), "w", newline="") as csvfile:
         writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
-        
+
         for todo in todos:
             writer.writerow([user_id, username, todo.get("completed"),
                              todo.get("title")])
