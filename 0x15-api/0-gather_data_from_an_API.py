@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-This script retrieves data of an employee through an API and displays the employee's TODO list progress.
+This script retrieves data of an employee through an API and displays
+the employee's TODO list progress.
 
 Usage:
     python3 script_name.py employee_id
@@ -9,12 +10,14 @@ Arguments:
     employee_id: The ID of the employee whose data needs to be fetched.
 
 Output Format:
-    First line: Employee EMPLOYEE_NAME is done with tasks (NUMBER_OF_DONE_TASKS/TOTAL_NUMBER_OF_TASKS):
+    First line: Employee EMPLOYEE_NAME is done with tasks
+    (NUMBER_OF_DONE_TASKS/TOTAL_NUMBER_OF_TASKS):
         - EMPLOYEE_NAME: name of the employee
         - NUMBER_OF_DONE_TASKS: number of completed tasks
         - TOTAL_NUMBER_OF_TASKS: total number of tasks,
           which is the sum of completed and non-completed tasks
-    Second and subsequent lines display the title of completed tasks, each prefixed by a tabulation and a space.
+    Second and subsequent lines display the title of completed tasks,
+    each prefixed by a tabulation and a space.
 
 Example:
     python3 script_name.py 2
@@ -50,10 +53,15 @@ if __name__ == "__main__":
     todos = todos_response.json()
 
     # Create a list of completed tasks
-    completed = [todo.get("title") for todo in todos if todo.get("completed")]
+    completed = []
+
+    for todo in todos:
+        if todo.get("completed") is True:
+            completed.append(todo.get("title"))
 
     # Output progress
-    print("Employee {} is done with tasks ({}/{})".format(username, len(completed), len(todos)))
+    print("Employee {} is done with tasks ({}/{})".format(username,
+        len(completed), len(todos)))
 
     # Output completed tasks
     for complete in completed:
