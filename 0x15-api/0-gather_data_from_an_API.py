@@ -1,9 +1,11 @@
-
+#!/usr/bin/pyrhon3
+#this script gets data of  an emloyee through an API
 import requests
 import sys
 
 
 if __name__ == "__main__":
+    #we start by inputing the url of the API
     The_API = "https://jsonplaceholder.typicode.com/"
 
     employee_id = sys.argv[1]
