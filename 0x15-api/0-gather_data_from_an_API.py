@@ -22,7 +22,7 @@ if __name__ == "__main__":
     #we extract the employee id from the command line
     employee_id = sys.argv[1]
     #retrive user data
-    user_response = requests.get(The_API + "user/{}".format(employee_id))
+    user_response = requests.get(The_API + "users/{}".format(employee_id))
     user = user_response.json()
     username = user.get("username")
     #retrieve todo list for a specific employee
