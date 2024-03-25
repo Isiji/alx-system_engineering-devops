@@ -1,4 +1,4 @@
-#!/usr/bin/pyrhon3
+#!/usr/bin/python3
 #this script gets data of  an emloyee through an API
 import requests
 import sys
