@@ -10,7 +10,8 @@ Arguments:
     employee_id: The ID of the employee whose data needs to be fetched.
 
 Output Format:
-    First line: Employee EMPLOYEE_NAME is done with tasks (NUMBER_OF_DONE_TASKS/TOTAL_NUMBER_OF_TASKS):
+    First line: Employee EMPLOYEE_NAME is done with tasks
+    (NUMBER_OF_DONE_TASKS/TOTAL_NUMBER_OF_TASKS):
         - EMPLOYEE_NAME: name of the employee
         - NUMBER_OF_DONE_TASKS: number of completed tasks
         - TOTAL_NUMBER_OF_TASKS: total number of tasks,
@@ -58,7 +59,8 @@ if __name__ == "__main__":
     total_tasks = len(todos)
 
     # Output progress
-    print("Employee {} is done with tasks ({}/{})".format(username, num_completed_tasks, total_tasks))
+    print("Employee {} is done with tasks ({}/{})".format(username,
+        num_completed_tasks, total_tasks))
 
     # Output completed tasks
     for todo in todos:
