@@ -1,0 +1,32 @@
+#!/usr/bin/python3
+#Records all tasks that are owned by this employee
+#Format must be: { "USER_ID": [{"task": "TASK_TITLE", "completed": TASK_COMPLETED_STATUS, "username": "USERNAME"}, {"task": "TASK_TITLE", "completed": TASK_COMPLETED_STATUS, "username": "USERNAME"}, ... ]}
+#File name must be: USER_ID.json
+
+import requests
+import sys
+
+
+if __name__ == "__main__":
+    #we start by inputing the url of the API
+    url = "https://jsonplaceholder.typicode.com/"
+
+    #we extract the employee id from the command line
+    user_id = sys.argv[1]
+    #retrive user data
+    user = requests.get(url + "user/{}".format(user_id)).json()
+    username = user.get("username")
+    params = {"userId": user_id}
+
+   todos = requests.get(url + "todos", params=params).json() 
+    data_to_export = {user_id: []}
+    for todo in todos:
+        task_info = [
+            "task": todo.get("title"),
+            "completed": todo.get("completed")
+            "username": username
+        ]
+        data_to_export[user_id].append(task_info)
+
+    with open("{}.json".format(user_id), "w") as jsonfile:
+        json.dump(data_to_export, jsonfile, indent=4)
