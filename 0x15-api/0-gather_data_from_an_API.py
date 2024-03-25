@@ -24,6 +24,7 @@ if __name__ == "__main__":
     #retrive user data
     user_response = requests.get(The_API + "user/{}".format(employee_id))
     user = user_response.json()
+    username = user.get("username")
     #retrieve todo list for a specific employee
     params = {"userId": employee_id}
     todos_response = requests.get(The_API + "todos", params=params)
@@ -35,7 +36,7 @@ if __name__ == "__main__":
         if todo.get("completed") is True:
             completed.append(todo.get("title"))
     #output progress
-    print("Employee {} is done with tasks{}/{}".format(user.get("name"),
+    print("Employee {} is done with tasks{}/{}".format(username,
         len(completed),len(todos)))
     #output completed tasks
     for complete in completed:
