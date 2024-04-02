@@ -34,8 +34,8 @@ Dependencies:
 
 Example:
     python3 script_name.py 2
-    This will record all tasks owned by the employee with ID 2
-    into a JSON file named "2.json".
+    This will record all tasks owned by the employee with ID 2 into
+    a JSON file named "2.json".
 """
 
 import json
@@ -50,12 +50,13 @@ if __name__ == "__main__":
     user_id = sys.argv[1]
 
     # Retrieving user data
-    user = requests.get(url + "users/{}".format(user_id)).json()
-    username = user.get("username")
+    user_response = requests.get(url + "users/{}".format(user_id))
+    user = user_response.json()
 
     # Retrieving tasks for the user
     params = {"userId": user_id}
-    todos = requests.get(url + "todos", params=params).json()
+    todos_response = requests.get(url + "todos", params=params)
+    todos = todos_response.json()
 
     # Creating data to export in JSON format
     data_to_export = {user_id: []}
@@ -63,10 +64,12 @@ if __name__ == "__main__":
         task_info = {
             "task": todo.get("title"),
             "completed": todo.get("completed"),
-            "username": username
+            "username": user.get("username")  # Use user's username
         }
         data_to_export[user_id].append(task_info)
 
     # Writing data to a JSON file
-    with open("{}.json".format(user_id), "w") as jsonfile:
+    filename = "{}.json".format(user_id)
+    with open(filename, "w") as jsonfile:
         json.dump(data_to_export, jsonfile, indent=4)
+
