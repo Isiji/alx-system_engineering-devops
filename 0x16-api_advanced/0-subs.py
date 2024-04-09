@@ -12,7 +12,7 @@ def number_of_subscribers(subreddit):
     '''
     user = {'User-Agent': 'Lizzie'}
     url = requests.get('https://www.reddit.com/r/{}/about.json'
-                       .format(subreddit), headers=user).json()
+            .format(subreddit), headers=user).json()
     try:
         return url.get('data').get('subscribers')
     except Exception:
@@ -20,4 +20,8 @@ def number_of_subscribers(subreddit):
 
 
 if __name__ == "__main__":
-    number_of_subscribers(argv[1])
+    if len(argv) != 2:
+        print("Usage: python3 <script_name.py> <subreddit>")
+    else:
+        subscribers = number_of_subscribers(argv[1])
+        print("Number of subscribers:", subscribers)
