@@ -23,7 +23,6 @@ v1.0.0 (by /u/firdaus_cartoon_jr)"
     results = response.json().get("data")
     after = results.get("after")
     count += results.get("dist")
-    
     for c in results.get("children"):
         hot_list.append(c.get("data").get("title"))
 
